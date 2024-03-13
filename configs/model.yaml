@@ -1,6 +1,7 @@
-model:
-- class_path: models.ClassificationNet
-  init_args:
-   num_classes: 8
-   freeze_ratio: 0.7
-   n_epochs: 100
+fit: 
+  model:
+    class_path: models.ClassificationNet
+    init_args:
+      num_classes: 8
+      freeze_ratio: 0.7
+      n_epochs: 100

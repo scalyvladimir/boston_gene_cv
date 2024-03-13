@@ -24,6 +24,9 @@ class ClassificationNet(pl.LightningModule):
         else:
             self.model = torchvision.models.resnet50(weights=torchvision.models.resnet.ResNet50_Weights.IMAGENET1K_V1)
 
+        import os
+        print(os.getpid())
+
         params = list(self.model.parameters())
         params_t = int(len(params) * freeze_ratio)
 
@@ -34,8 +37,8 @@ class ClassificationNet(pl.LightningModule):
         
         self.sm = nn.Softmax(dim=1)
         
-        self.train_f1 = F1Score(average='macro', num_classes=num_classes, mdmc_average='global')
-        self.val_f1 = F1Score(average='macro', num_classes=num_classes, mdmc_average='global')
+        self.train_f1 = F1Score(task='multiclass', average='macro', num_classes=num_classes, multidim_average='global')
+        self.val_f1 = F1Score(task='multiclass', average='macro', num_classes=num_classes, multidim_average='global')
     
     def forward(self, x):
         

@@ -5,12 +5,12 @@ from data import BGDataModule
 
 
 def cli_main():
-    LightningCLI(
+    cli = LightningCLI(
         model_class=ClassificationNet,
-        datamodule_class=BGDataModule
+        datamodule_class=BGDataModule,
         # parser_kwargs={
-            # parser
-        #     'default_config_files': ['configs/fit.yaml']
+        #     # parser
+        #     'default_config_files': ['configs/trainer.yaml', 'configs/data.yaml', 'configs/model.yaml']
         # }
     )
     
