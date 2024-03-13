@@ -9,7 +9,7 @@ def cli_main():
         model_class=ClassificationNet,
         datamodule_class=BGDataModule,
         parser_kwargs={"parser_mode": "omegaconf"},
-        ave_config_callback=None
+        save_config_callback=None
     )
     
 if __name__ == '__main__':
