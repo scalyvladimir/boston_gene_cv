@@ -17,12 +17,12 @@ class BGDataModule(pl.LightningDataModule):
 
         # Later we will deal with Subsets of dataset, those are sharing exact same transform -- that's is highly undesirable scenario
         # In order to avoid deepcopying dataset and replacing transforms we will do something slighly more elegant here 
-        self.train_dataset = datasets.ImageFolder(
+        self.train_data = datasets.ImageFolder(
             root=self.data_dir,
             transform=augmentations.get_train_transform()
         )
 
-        self.val_dataset = datasets.ImageFolder(
+        self.val_data = datasets.ImageFolder(
             root=self.data_dir,
             transform=augmentations.get_val_transform()
         )
@@ -30,20 +30,20 @@ class BGDataModule(pl.LightningDataModule):
         self.seed = 0xC0FFEE
 
         self.train_idx, self.val_idx = train_test_split(
-            torch.arange(len(self.train_dataset), dtype=torch.int),
+            torch.arange(len(self.train_data), dtype=torch.int),
             test_size=0.2,
             random_state=self.seed,
-            stratify=self.train_dataset.targets
+            stratify=self.train_data.targets
         )
 
         self.batch_size = batch_size
 
     def setup(self, stage: str):
         if stage == 'fit':
-            self.train_dataset = Subset(self.train_dataset, self.train_idx)
-            self.val_dataset = Subset(self.val_dataset, self.val_idx)
+            self.train_dataset = Subset(self.train_data, self.train_idx)
+            self.val_dataset = Subset(self.val_data, self.val_idx)
 
-            t_tgts = torch.tensor(self.train_dataset.targets)
+            t_tgts = torch.tensor(self.train_data.targets)
 
             _, class_cnts = torch.unique(t_tgts[self.train_idx], return_counts=True)
     
@@ -57,7 +57,7 @@ class BGDataModule(pl.LightningDataModule):
             self.train_sampler = WeightedRandomSampler(sample_weights, num_samples=N//2)
 
         if stage == "test":
-            self.val_dataset = Subset(self.val_dataset, self.val_idx)
+            self.val_dataset = Subset(self.val_data, self.val_idx)
 
     def train_dataloader(self):
         return DataLoader(
