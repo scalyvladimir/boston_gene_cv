@@ -7,7 +7,9 @@ from data import BGDataModule
 def cli_main():
     cli = LightningCLI(
         model_class=ClassificationNet,
-        datamodule_class=BGDataModule
+        datamodule_class=BGDataModule,
+        parser_kwargs={"parser_mode": "omegaconf"},
+        ave_config_callback=None
     )
     
 if __name__ == '__main__':
