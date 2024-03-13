@@ -30,10 +30,10 @@ class BGDataModule(pl.LightningDataModule):
         self.seed = 0xC0FFEE
 
         self.train_idx, self.val_idx = train_test_split(
-            torch.arange(len(self.dataset), dtype=torch.int),
+            torch.arange(len(self.train_dataset), dtype=torch.int),
             test_size=0.2,
             random_state=self.seed,
-            stratify=self.dataset.targets
+            stratify=self.train_dataset.targets
         )
 
         self.batch_size = batch_size
@@ -43,7 +43,7 @@ class BGDataModule(pl.LightningDataModule):
             self.train_dataset = Subset(self.train_dataset, self.train_idx)
             self.val_dataset = Subset(self.val_dataset, self.val_idx)
 
-            t_tgts = torch.tensor(self.dataset.targets)
+            t_tgts = torch.tensor(self.train_dataset.targets)
 
             _, class_cnts = torch.unique(t_tgts[self.train_idx], return_counts=True)
     
