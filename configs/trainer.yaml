@@ -1,0 +1,14 @@
+callbacks:
+  - class_path: pytorch_lightning.callbacks.ModelCheckpoint
+    init_args:
+      dirpath: checkpoints
+      monitor: val_f1
+      filename: "{epoch:02d}-{val_f1:.3f}"
+      mode: max
+accelerator: gpu
+max_epochs: 100
+logger: 
+  - class_path: pytorch_lightning.loggers.WandbLogger
+    init_args:
+      project: bg_cv
+      name: debug

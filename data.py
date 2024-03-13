@@ -1,15 +1,15 @@
-import lightning as pl
+import pytorch_lightning as pl
 from torch.utils.data import DataLoader, Subset, WeightedRandomSampler
 from sklearn.model_selection import train_test_split
-from torchvision import transforms as TT
-from torchvision import datasets
+from torchvision import datasets, transforms as TT
 import torch
 import os
 
 
 class BGDataModule(pl.LightningDataModule):
-    def __init__(self, data_dir: str = "./"):
+    def __init__(self, data_dir= "./", batch_size=1):
         super().__init__()
+        self.save_hyperparameters()
 
         self.data_dir = data_dir
         assert os.path.isdir(data_dir)
@@ -37,6 +37,8 @@ class BGDataModule(pl.LightningDataModule):
             stratify=self.dataset.targets
         )
 
+        self.batch_size = batch_size
+
     def setup(self, stage: str):
         if stage == 'fit':
             self.train_dataset = Subset(self.dataset, self.train_idx)
@@ -61,13 +63,13 @@ class BGDataModule(pl.LightningDataModule):
     def train_dataloader(self):
         return DataLoader(
             dataset=self.train_dataset,
-            batch_size=32,
+            batch_size=self.batch_size,
             pin_memory=True,
             sampler=self.train_sampler
         )
 
     def val_dataloader(self):
-        return DataLoader(self.val_dataset, batch_size=32)
+        return DataLoader(self.val_dataset, batch_size=self.batch_size, pin_memory=True,)
 
     def test_dataloader(self):
-        return DataLoader(self.val_dataset, batch_size=32)
+        return DataLoader(self.val_dataset, batch_size=self.batch_size, pin_memory=True,)

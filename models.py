@@ -10,6 +10,7 @@ class ClassificationNet(pl.LightningModule):
     
     def __init__(self, num_classes, freeze_ratio, n_epochs, class_weights=None, model=None):
         super().__init__()
+        self.save_hyperparameters()
         
         self.n_epochs = n_epochs
         
@@ -21,14 +22,15 @@ class ClassificationNet(pl.LightningModule):
         if model is not None:
             self.model = model
         else:
-            self.model = torchvision.models.resnet50(pretrained=True)
-            self.model.fc = nn.Linear(in_features=2048, out_features=num_classes, bias=True)
-        
+            self.model = torchvision.models.resnet50(weights=torchvision.models.resnet.ResNet50_Weights.IMAGENET1K_V1)
+
         params = list(self.model.parameters())
         params_t = int(len(params) * freeze_ratio)
 
         for param in params[:params_t]:
             param.requires_grad = False
+
+        self.model.fc = nn.Linear(in_features=2048, out_features=num_classes, bias=True)
         
         self.sm = nn.Softmax(dim=1)
         
