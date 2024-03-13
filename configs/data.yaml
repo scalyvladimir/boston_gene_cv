@@ -1,6 +1,0 @@
-fit:
-  data:
-    class_path: data.BGDataModule
-    init_args:
-      batch_size: 32
-      data_dir: images
