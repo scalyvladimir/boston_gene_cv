@@ -65,11 +65,12 @@ class BGDataModule(pl.LightningDataModule):
             dataset=self.train_dataset,
             batch_size=self.batch_size,
             pin_memory=True,
-            sampler=self.train_sampler
+            sampler=self.train_sampler,
+            num_workers=11
         )
 
     def val_dataloader(self):
-        return DataLoader(self.val_dataset, batch_size=self.batch_size, pin_memory=True,)
+        return DataLoader(self.val_dataset, batch_size=self.batch_size, pin_memory=True, num_workers=11)
 
     def test_dataloader(self):
-        return DataLoader(self.val_dataset, batch_size=self.batch_size, pin_memory=True,)
+        return DataLoader(self.val_dataset, batch_size=self.batch_size, pin_memory=True, num_workers=11)
