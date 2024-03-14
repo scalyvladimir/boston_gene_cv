@@ -6,7 +6,6 @@ def get_train_transform():
         TT.RandomHorizontalFlip(p=0.7),
         TT.RandomResizedCrop(128, scale=(0.5, 1)),  # scale - min; max area of crop
         TT.RandomRotation(25),
-        TT.GaussianBlur(9), 
         TT.ToTensor(),
         TT.Normalize(
             mean=[0.485, 0.456, 0.406],
