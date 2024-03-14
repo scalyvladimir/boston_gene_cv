@@ -47,7 +47,7 @@ class ClassificationNet(pl.LightningModule):
         return logits
     
     def configure_optimizers(self):
-        optimizer = AdamW(self.model.parameters(), lr=1e-3)
+        optimizer = AdamW(self.model.parameters(), lr=1e-3, amsgrad=True, weight_decay=1e-2)
         scheduler = CosineAnnealingLR(optimizer, T_max=self.n_epochs, eta_min=1e-4)
         return [optimizer], [scheduler]
     
