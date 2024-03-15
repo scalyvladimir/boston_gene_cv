@@ -3,8 +3,11 @@ from torchvision import transforms as TT
 
 def get_train_transform():
     return TT.Compose([
-        TT.RandomHorizontalFlip(p=0.7),
-        TT.RandomResizedCrop(128, scale=(0.5, 1)),  # scale - min; max area of crop
+        TT.RandomHorizontalFlip(p=0.6),
+        TT.RandomChoice([
+            TT.RandomResizedCrop(128, scale=(0.5, 1)),  # scale - min; max area of crop
+            TT.CenterCrop(128),
+        ]),
         TT.RandomRotation(25),
         TT.ToTensor(),
         TT.Normalize(
