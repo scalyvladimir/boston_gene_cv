@@ -8,7 +8,7 @@ def get_train_transform():
             TT.RandomResizedCrop(128, scale=(0.5, 1)),  # scale - min; max area of crop
             TT.CenterCrop(128),
         ]),
-        TT.RandomRotation(25),
+        TT.RandomApply([TT.RandomRotation(25),], p=0.5),
         TT.ToTensor(),
         TT.Normalize(
             mean=[0.485, 0.456, 0.406],
