@@ -56,9 +56,6 @@ class BGDataModule(pl.LightningDataModule):
             
             self.train_sampler = WeightedRandomSampler(sample_weights, num_samples=N//2)
 
-        if stage == "test":
-            self.val_dataset = Subset(self.val_data, self.val_idx)
-
     def train_dataloader(self):
         return DataLoader(
             dataset=self.train_dataset,
@@ -72,4 +69,13 @@ class BGDataModule(pl.LightningDataModule):
         return DataLoader(self.val_dataset, batch_size=self.batch_size, pin_memory=True, num_workers=11, shuffle=False)
 
     def test_dataloader(self):
-        return DataLoader(self.val_dataset, batch_size=self.batch_size, pin_memory=True, num_workers=11, shuffle=False)
+        return DataLoader(
+            datasets.ImageFolder(
+                root=self.data_dir,
+                transform=augmentations.get_val_transform()
+            ),
+            batch_size=self.batch_size,
+            pin_memory=True,
+            num_workers=11,
+            shuffle=False
+        )
