@@ -18,6 +18,7 @@ Vladimir Chernyy
 ## 2.  Вспомогальные папки
   - [pics/](pics/) -- картинки лоссов и метрик
   - [configs/](configs/) -- тренировочные конфигурации
+  - [train_embeds_tgt.npy](notebooks/train_embeds_tgt.npy), [val_embeds_tgt.npy](notebooks/val_embeds_tgt.npy) -- сохраненные трейновые и валидационные фичи для картинок, можно потестить мои чиселки при желании
 
 ## 3. Железо
 `Intel Core-i5 12400F` + `GeForce RTX 3070 8Gb` - все обучал на своем домашнем пк(веса *"домашние"*)
