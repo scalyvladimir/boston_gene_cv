@@ -12,6 +12,9 @@
     python main.py fit -c configs/default.yaml
     ```
   - [augmentations.py](augmentations.py) - тренировачные/валидационные аугментации
-2. Отчет
+
+2. [pics/](pics/) - картинки с графиками лоссов и метрик
+
+3. Отчет
   
     В виде ноутбука доступен по [ссылке](notebooks/report.ipynb)
