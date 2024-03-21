@@ -24,4 +24,4 @@ Vladimir Chernyy
 
 ## 3. Отчет
     
-    В виде ноутбука доступен по [ссылке](notebooks/report.ipynb)
+    В виде ноутбука доступен по [f](notebooks/report.ipynb)
