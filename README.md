@@ -20,7 +20,7 @@ Vladimir Chernyy
   - [configs/](configs/) -- тренировочные конфигурации
 
 ## 3. Железо
-   - `Intel Core-i5 12400F` + `GeForce RTX 3070 8Gb` - все обучал на своем домашнем пк.
+   - `Intel Core-i5 12400F` + `GeForce RTX 3070 8Gb` - все обучал на своем домашнем пк(веса *"домашние"*)
 
 ## 3. Отчет
-    В виде ноутбука доступен по [f](notebooks/report.ipynb)
+    В виде ноутбука доступен по [ссылке](notebooks/report.ipynb)
