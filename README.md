@@ -23,5 +23,4 @@ Vladimir Chernyy
    - `Intel Core-i5 12400F` + `GeForce RTX 3070 8Gb` - все тренировал и обучал на своем домашнем пк.
 
 ## 3. Отчет
-  
     В виде ноутбука доступен по [ссылке](notebooks/report.ipynb)
