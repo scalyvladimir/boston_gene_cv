@@ -1,6 +1,6 @@
 # Computer Vision Test case for Boston Gene
 
-# Навигация по репозиторию
+Навигация по репозиторию
 
 1. Кодовая база
    
