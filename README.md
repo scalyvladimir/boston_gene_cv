@@ -1,5 +1,7 @@
 # Computer Vision Test case for Boston Gene
 
+Vladimir Chernyy
+
 Навигация по репозиторию
 
 1. Кодовая база
@@ -14,8 +16,11 @@
   - [augmentations.py](augmentations.py) - тренировачные/валидационные аугментации
 
 2.  картинки с графиками лоссов и метрик
-   - [pics/](pics/)
+  - [pics/](pics/)
 
-4. Отчет
+4. Железо
+   - `Intel Core-i5 12400F` + `GeForce RTX 3070 8Gb` - все тренировал и обучал на своем домашнем пк.
+
+5. Отчет
   
     В виде ноутбука доступен по [ссылке](notebooks/report.ipynb)
