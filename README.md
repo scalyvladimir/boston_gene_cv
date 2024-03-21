@@ -13,4 +13,5 @@
   ```
 - [augmentations.py](augmentations.py) - тренировачные/валидационные аугментации
 2. Отчет
+  
   В виде ноутбука доступен по [ссылке](notebooks/report.ipynb)
